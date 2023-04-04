@@ -1,2 +1,2 @@
-# PRG08-SpaceTitanic
+# PRG08-MilkGrader
 little game

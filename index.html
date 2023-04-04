@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Grade my Milk!</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Delicious+Handrawn">
+    <link rel="icon" href="img/icon.png"/>
+    <script defer src="app.js" type="module"></script>
+    <style>
+        body, html {
+            height: 100%;
+            scroll-behavior: smooth;
+        }
+
+        body, h1, h2, h3, h4, h5, h6 {
+            font-family: 'Delicious Handrawn', cursive;
+        }
+
+        .bgimg {
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-image: url("img/milk-background.png");
+            min-height: 100%;
+        }
+    </style>
+</head>
+<body>
+<header class="bgimg w3-display-container w3-grayscale-min" id="home">
+    <div class="w3-display-bottomleft w3-padding">
+        <p><a href="https://github.com/Frietvorkje69" target="_blank" class="w3-tag w3-xlarge">Made by:
+            Frietvorkje69</a></p>
+    </div>
+    <div class="w3-display-middle w3-center">
+        <span class="w3-text-white w3-hide-small" style="font-size:100px">REVOLUTIONARY<br>MILK GRADER</span>
+        <p><a href="#grader" class="w3-button w3-xxlarge w3-black">start grading!</a></p>
+    </div>
+</header>
+
+<div class="w3-container w3-white w3-padding-64 w3-xxlarge" id="grader">
+    <div class="w3-content w3-center">
+        <h1 class="w3-jumbo" style="margin-bottom:64px">GRADER</h1>
+        <label for="fat">Fat: </label>
+        <select id="fat" name="fat">
+            <option value="0">Low</option>
+            <option value="1">High</option>
+        </select>
+        <label for="turbidity">Turbidity: </label>
+        <select id="turbidity" name="turbidity">
+            <option value="0">Low</option>
+            <option value="1">High</option>
+        </select>
+        <label for='ph'>pH: </label><input type='number' id='ph' min="3" max="9.5" step="0.1"
+                                           placeholder="(pH between 3 and 9.5)"/>
+        <br/>
+        <br/>
+        <button id="test">Grade!</button>
+        <br/>
+        <br/>
+        <div>
+            <div class="w3-container w3-white" id="display"></div>
+        </div>
+    </div>
+</div>
+<!--<div>-->
+<!--    <form action="Trainer">-->
+<!--        <input type="submit" value="Trainer"/>-->
+<!--    </form>-->
+<!--</div>-->
+</body>
+</html>

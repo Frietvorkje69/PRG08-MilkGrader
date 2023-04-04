@@ -1,0 +1,45 @@
+{
+  "root": {
+    "attribute": "pH",
+    "predicateName": ">=",
+    "pivot": 7.4,
+    "match": {
+      "category": "low"
+    },
+    "notMatch": {
+      "attribute": "pH",
+      "predicateName": ">=",
+      "pivot": 6.4,
+      "match": {
+        "attribute": "Fat",
+        "predicateName": ">=",
+        "pivot": 1,
+        "match": {
+          "attribute": "Turbidity",
+          "predicateName": ">=",
+          "pivot": 1,
+          "match": {
+            "category": "high"
+          },
+          "notMatch": {
+            "category": "medium"
+          },
+          "matchedCount": 129,
+          "notMatchedCount": 206
+        },
+        "notMatch": {
+          "category": "medium"
+        },
+        "matchedCount": 335,
+        "notMatchedCount": 211
+      },
+      "notMatch": {
+        "category": "low"
+      },
+      "matchedCount": 546,
+      "notMatchedCount": 132
+    },
+    "matchedCount": 170,
+    "notMatchedCount": 678
+  }
+}
