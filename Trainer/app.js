@@ -19,10 +19,18 @@ const ignored = [
 
 //HTML stuff
 const display = document.getElementById("display");
-// const depressedActDepressed = document.getElementById("1");
-// const goodActDepressed = document.getElementById("2");
-// const depressedActGood = document.getElementById("3");
-// const goodActGood = document.getElementById("4");
+
+const lowLow = document.getElementById("lowLow");
+const lowMed = document.getElementById("lowMed");
+const lowHigh = document.getElementById("lowHigh");
+
+const medLow = document.getElementById("medLow");
+const medMed = document.getElementById("medMed");
+const medHigh = document.getElementById("medHigh");
+
+const highLow = document.getElementById("highLow");
+const highMed = document.getElementById("highMed");
+const highHigh = document.getElementById("highHigh");
 
 
 //
@@ -59,30 +67,54 @@ function trainModel(data) {
 
     let amountCorrect = 0;
 
-    // let predictedDepressedActDepressed = 0;
-    // let predictedDepressedActGood = 0;
-    // let predictedGoodActGood = 0;
-    // let predictedGoodActDepressed = 0;
+    // Low
+    let predictedLowButLow = 0;
+    let predictedLowButMed = 0;
+    let predictedLowButHigh = 0;
+    // Medium
+    let predictedMedButLow = 0;
+    let predictedMedButMed = 0;
+    let predictedMedButHigh = 0;
+    // High
+    let predictedHighButLow = 0;
+    let predictedHighButMed = 0;
+    let predictedHighButHigh = 0;
 
     for (let row of testData) {
         let prediction = decisionTree.predict(row)
         if (prediction == row.Grade) {
             amountCorrect++
         }
+        if (prediction == "low" && row.Grade == "low") {
+            predictedLowButLow++
+        }
+        if (prediction == "low" && row.Grade == "medium") {
+            predictedLowButMed++
+        }
+        if (prediction == "low" && row.Grade == "high") {
+            predictedLowButHigh++
+        }
+
+        if (prediction == "medium" && row.Grade == "low") {
+            predictedMedButLow++
+        }
+        if (prediction == "medium" && row.Grade == "medium") {
+            predictedMedButMed++
+        }
+        if (prediction == "medium" && row.Grade == "high") {
+            predictedMedButHigh++
+        }
+
+        if (prediction == "high" && row.Grade == "low") {
+            predictedHighButLow++
+        }
+        if (prediction == "high" && row.Grade == "medium") {
+            predictedHighButMed++
+        }
+        if (prediction == "high" && row.Grade == "high") {
+            predictedHighButHigh++
+        }
     }
-    //     if (prediction == 1 && row.depressed == 1) {
-    //         predictedDepressedActDepressed++
-    //     }
-    //     if (prediction == 1 && row.depressed == 0) {
-    //         predictedDepressedActGood++
-    //     }
-    //     if (prediction == 0 && row.depressed == 0) {
-    //         predictedGoodActGood++
-    //     }
-    //     if (prediction == 0 && row.depressed == 1) {
-    //         predictedGoodActDepressed++
-    //     }
-    // }
 
     //Calculate accuracy
     let accuracy = amountCorrect / testData.length
@@ -90,10 +122,18 @@ function trainModel(data) {
     display.innerText = `Accuracy: ${accuracy}`;
 
     //Confusion Matrix
-    // depressedActDepressed.innerText = `${predictedDepressedActDepressed}`;
-    // depressedActGood.innerText = `${predictedDepressedActGood}`;
-    // goodActDepressed.innerText = `${predictedGoodActGood}`;
-    // goodActGood.innerText = `${predictedGoodActDepressed}`;
+    lowLow.innerHTML = predictedLowButLow;
+    lowMed.innerHTML = predictedLowButMed;
+    lowHigh.innerHTML = predictedLowButHigh;
+
+    medLow.innerHTML = predictedMedButLow;
+    medMed.innerHTML = predictedMedButMed;
+    medHigh.innerHTML = predictedMedButHigh;
+
+    highLow.innerHTML = predictedHighButLow;
+    highMed.innerHTML = predictedHighButMed;
+    highHigh.innerHTML = predictedHighButHigh;
+
 
     //SAVE model
     let json = decisionTree.stringify()

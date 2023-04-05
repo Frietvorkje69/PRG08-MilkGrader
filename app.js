@@ -1,12 +1,10 @@
 import {DecisionTree} from "./libraries/decisiontree.js"
 
-// import {VegaTree} from "./libraries/vegatree.js"
-
 //HTML
 const display = document.getElementById("display");
-const testbtn = document.querySelector("#test");
+const gradeBtn = document.querySelector("#grade");
 
-testbtn.addEventListener("click", () => loadSavedModel() && console.log("Loading model.."));
+gradeBtn.addEventListener("click", () => loadSavedModel() && console.log("Loading model.."));
 
 function loadSavedModel() {
     fetch("./model/model.json")
@@ -22,12 +20,13 @@ function modelLoaded(model) {
     let turbidityValue = document.getElementById('turbidity').value;
     console.log(phValue, fatValue, turbidityValue)
 
-    // TEST DATA
+    // MAKE PREDICTION
     let data = { pH: phValue, Fat: fatValue, Turbidity: turbidityValue }
     console.log(data)
     let prediction = decisionTree.predict(data)
     console.log("Predicted: " + prediction)
 
+    // POSSIBLE MESSAGES
     if (prediction == "low") {
         display.innerText = `Your milk appears to be of low grade.. please throw it out.`
     }
